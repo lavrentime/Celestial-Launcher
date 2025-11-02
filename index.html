@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celestial Launcher - Стабильный, быстрый и красивый</title>
+    <style>
+        /* Встроенный CSS для простоты */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); /* Темный градиент */
+            color: #e6e6e6;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #4cc9f0; /* Яркий акцент */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: #e6e6e6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #4cc9f0; /* Цвет при наведении */
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: url('assets/images.jpg') no-repeat center center/cover; /* Путь к фоновому изображению */
+            background-attachment: fixed; /* Фиксированный фон */
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Полупрозрачный оверлей */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(76, 201, 240, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #4361ee; /* Яркий акцент */
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 50px; /* Закругленные углы */
+            font-size: 1.2rem;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #3a56d4;
+            transform: scale(1.05);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .stat-box h3 {
+            font-size: 2.5rem;
+            margin: 0;
+            color: #4cc9f0; /* Цвет чисел */
+        }
+
+        .stat-box p {
+            margin: 0;
+            font-size: 1rem;
+            color: #a0a0a0;
+        }
+
+        .features {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4cc9f0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: rgba(30, 30, 46, 0.8); /* Темный карточка */
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card h3 {
+            color: #4cc9f0;
+            margin-top: 0;
+        }
+
+        .screenshots {
+            padding: 4rem 2rem;
+            background-color: rgba(10, 10, 20, 0.8);
+        }
+
+        .screenshots h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4cc9f0;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .screenshot-grid img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .downloads {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .downloads h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #4cc9f0;
+        }
+
+        .download-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .download-option {
+            background-color: rgba(30, 30, 46, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .platform {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .platform-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            nav ul {
+                margin-top: 1rem;
+            }
+            nav ul li {
+                margin: 0 1rem;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Celestial Launcher</div>
+        <nav>
+            <ul>
+                <li><a href="#features">Особенности</a></li>
+                <li><a href="#screenshots">Скриншоты</a></li>
+                <li><a href="#downloads">Скачать</a></li>
+                <li><a href="#support">Поддержка</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Создан для Майнкрафтеров</h1>
+            <p>Stable, fast and simple - но еще красивее и функциональнее. Celestial Launcher - это ваш идеальный выбор для запуска Minecraft с потрясающим интерфейсом и расширенными возможностями.</p>
+            <a href="#downloads" class="cta-button">Скачать Прямо Сейчас</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-box">
+            <h3>100K+</h3>
+            <p>Игроков сегодня</p>
+        </div>
+        <div class="stat-box">
+            <h3>25K+</h3>
+            <p>Игроков онлайн</p>
+        </div>
+        <div class="stat-box">
+            <h3>500K+</h3>
+            <p>Игроков в месяц</p>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Почему Celestial?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>✨ Красивый UI</h3>
+                <p>Современный и эстетичный интерфейс с кастомными шрифтами, цветами и анимациями, как вы и хотели.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🚀 Быстрая Загрузка</h3>
+                <p>Оптимизированный запуск игры с плавной анимацией и визуальным прогресс-баром.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚙️ Простая Настройка</h3>
+                <p>Полный интерфейс настроек, простая смена версии, никнейма и других параметров игры.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🌐 Поддержка Аккаунтов</h3>
+                <p>Поддержка обычных и Microsoft аккаунтов для удобного входа.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🧩 Установка Модов</h3>
+                <p>Встроенный менеджер модов и пакетов ресурсов для легкой кастомизации.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📰 Новости</h3>
+                <p>Постоянно обновляемая лента новостей Minecraft и самого лаунчера.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="screenshots" class="screenshots">
+        <h2>Взгляните на Красоту</h2>
+        <div class="screenshot-grid">
+            <!-- Замените placeholder.jpg на пути к вашим скриншотам -->
+            <img src="assets/photo.jpg" alt="Celestial Launcher">
+            <img src="assets/photo2.jpg" alt="Celestial Launcher">
+            <img src="assets/photo3.jpg" alt="Celestial Launcher">
+            <img src="assets/photo4.jpg" alt="Celestial Launcher">
+        </div>
+    </section>
+
+    <section id="downloads" class="downloads">
+        <h2>Скачать Celestial Launcher</h2>
+        <p>Выберите вашу операционную систему для загрузки.</p>
+        <div class="download-options">
+            <div class="download-option">
+                <div class="platform-icon">🪟</div>
+                <div class="platform">Windows</div>
+                <a href="assets/Setup.exe" class="cta-button">Скачать .exe</a>
+            </div>
+            <div class="download-option">
+                <div class="platform-icon">🍎</div>
+                <div class="platform">macOS</div>
+                <a href="nothing" class="cta-button">Скачать .dmg</a>
+            </div>
+            <div class="download-option">
+                <div class="platform-icon">🐧</div>
+                <div class="platform">Linux</div>
+                <a href="nothing" class="cta-button">Скачать .AppImage</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="support" class="features">
+        <h2>Поддержка</h2>
+        <p>Если у вас возникли проблемы или вопросы, вы всегда можете с нами связаться.</p>
+        <p>Наша команда разработчиков и волонтеров постарается помочь вам.</p>
+        <p>Email: fut.me.lol.men@gmail.com </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Celestial Launcher. Все права защищены. | Создано с ❤️ для сообщества Minecraft.</p>
+    </footer>
+
+    <script>
+        // Простой скрипт для плавного скролла к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
